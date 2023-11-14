@@ -1,0 +1,11 @@
+C:\Users\M lapan\source\repos\TasksManagmentSystem\TasksManagmentSystem.core\bin\Debug\net6.0\TasksManagmentSystem.core.deps.json
+C:\Users\M lapan\source\repos\TasksManagmentSystem\TasksManagmentSystem.core\bin\Debug\net6.0\TasksManagmentSystem.core.dll
+C:\Users\M lapan\source\repos\TasksManagmentSystem\TasksManagmentSystem.core\bin\Debug\net6.0\TasksManagmentSystem.core.pdb
+C:\Users\M lapan\source\repos\TasksManagmentSystem\TasksManagmentSystem.core\obj\Debug\net6.0\TasksManagmentSystem.core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\M lapan\source\repos\TasksManagmentSystem\TasksManagmentSystem.core\obj\Debug\net6.0\TasksManagmentSystem.core.AssemblyInfoInputs.cache
+C:\Users\M lapan\source\repos\TasksManagmentSystem\TasksManagmentSystem.core\obj\Debug\net6.0\TasksManagmentSystem.core.AssemblyInfo.cs
+C:\Users\M lapan\source\repos\TasksManagmentSystem\TasksManagmentSystem.core\obj\Debug\net6.0\TasksManagmentSystem.core.csproj.CoreCompileInputs.cache
+C:\Users\M lapan\source\repos\TasksManagmentSystem\TasksManagmentSystem.core\obj\Debug\net6.0\TasksManagmentSystem.core.dll
+C:\Users\M lapan\source\repos\TasksManagmentSystem\TasksManagmentSystem.core\obj\Debug\net6.0\refint\TasksManagmentSystem.core.dll
+C:\Users\M lapan\source\repos\TasksManagmentSystem\TasksManagmentSystem.core\obj\Debug\net6.0\TasksManagmentSystem.core.pdb
+C:\Users\M lapan\source\repos\TasksManagmentSystem\TasksManagmentSystem.core\obj\Debug\net6.0\ref\TasksManagmentSystem.core.dll

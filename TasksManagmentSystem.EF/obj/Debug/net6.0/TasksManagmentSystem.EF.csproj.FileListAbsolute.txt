@@ -1,0 +1,17 @@
+C:\Users\M lapan\source\repos\TasksManagmentSystem\TasksManagmentSystem.EF\bin\Debug\net6.0\TasksManagmentSystem.EF.deps.json
+C:\Users\M lapan\source\repos\TasksManagmentSystem\TasksManagmentSystem.EF\bin\Debug\net6.0\TasksManagmentSystem.EF.runtimeconfig.json
+C:\Users\M lapan\source\repos\TasksManagmentSystem\TasksManagmentSystem.EF\bin\Debug\net6.0\TasksManagmentSystem.EF.dll
+C:\Users\M lapan\source\repos\TasksManagmentSystem\TasksManagmentSystem.EF\bin\Debug\net6.0\TasksManagmentSystem.EF.pdb
+C:\Users\M lapan\source\repos\TasksManagmentSystem\TasksManagmentSystem.EF\bin\Debug\net6.0\TasksManagmentSystem.core.dll
+C:\Users\M lapan\source\repos\TasksManagmentSystem\TasksManagmentSystem.EF\bin\Debug\net6.0\TasksManagmentSystem.core.pdb
+C:\Users\M lapan\source\repos\TasksManagmentSystem\TasksManagmentSystem.EF\obj\Debug\net6.0\TasksManagmentSystem.EF.csproj.AssemblyReference.cache
+C:\Users\M lapan\source\repos\TasksManagmentSystem\TasksManagmentSystem.EF\obj\Debug\net6.0\TasksManagmentSystem.EF.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\M lapan\source\repos\TasksManagmentSystem\TasksManagmentSystem.EF\obj\Debug\net6.0\TasksManagmentSystem.EF.AssemblyInfoInputs.cache
+C:\Users\M lapan\source\repos\TasksManagmentSystem\TasksManagmentSystem.EF\obj\Debug\net6.0\TasksManagmentSystem.EF.AssemblyInfo.cs
+C:\Users\M lapan\source\repos\TasksManagmentSystem\TasksManagmentSystem.EF\obj\Debug\net6.0\TasksManagmentSystem.EF.csproj.CoreCompileInputs.cache
+C:\Users\M lapan\source\repos\TasksManagmentSystem\TasksManagmentSystem.EF\obj\Debug\net6.0\TasksManagmentSystem.EF.csproj.CopyComplete
+C:\Users\M lapan\source\repos\TasksManagmentSystem\TasksManagmentSystem.EF\obj\Debug\net6.0\TasksManagmentSystem.EF.dll
+C:\Users\M lapan\source\repos\TasksManagmentSystem\TasksManagmentSystem.EF\obj\Debug\net6.0\refint\TasksManagmentSystem.EF.dll
+C:\Users\M lapan\source\repos\TasksManagmentSystem\TasksManagmentSystem.EF\obj\Debug\net6.0\TasksManagmentSystem.EF.pdb
+C:\Users\M lapan\source\repos\TasksManagmentSystem\TasksManagmentSystem.EF\obj\Debug\net6.0\TasksManagmentSystem.EF.genruntimeconfig.cache
+C:\Users\M lapan\source\repos\TasksManagmentSystem\TasksManagmentSystem.EF\obj\Debug\net6.0\ref\TasksManagmentSystem.EF.dll

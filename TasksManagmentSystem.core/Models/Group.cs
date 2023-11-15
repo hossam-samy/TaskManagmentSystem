@@ -12,7 +12,7 @@ namespace TasksManagmentSystem.core.Models
 
         public string Name { get; set; }
 
-        public int ManagerId { get; set; }
+       
         public Manager manager { get; set; }
         public List<Member> Members { get; set; }
         public List<Project> Projects { get; set; }

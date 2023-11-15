@@ -15,8 +15,8 @@ namespace TasksManagmentSystem.core.Models
         public DateTime EndDate { get; set; }
         public string Status { get; set; }
 
-        public int ManagerId { get; set; }
-        public int MemberId { get; set; }
+      
+        
         public int ProjectId { get; set; }
         public Manager manager { get; set; }
         public Member member { get; set; }

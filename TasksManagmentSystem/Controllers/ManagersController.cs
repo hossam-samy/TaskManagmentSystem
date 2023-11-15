@@ -13,25 +13,25 @@ namespace TasksManagmentSystem.Controllers
     [Authorize]
     public class ManagersController : ControllerBase
     {
-        private readonly IUnitofWork unitofWork;
-        //private readonly IBaseRepo<Manager> baseRepo;
+        private readonly IUnitofWork unitofwork;
+        //private readonly ibaserepo<manager> baserepo;
 
-        public ManagersController(IUnitofWork unitofWork)
+        public ManagersController(IUnitofWork unitofwork)
         {
-           this.unitofWork = unitofWork;
-           // this.baseRepo = baseRepo;
+            this.unitofwork = unitofwork;
+            // this.baserepo = baserepo;
         }
-        
-        [HttpGet("asd")]
-        public IActionResult getbyid(int id)
-        {
-            //return Ok(unitofWork.Managers.Get(b => b.Id == id, b => new { b.Name, b.Email }));
-            return Ok(unitofWork.Managers.Get(b => b.Id == id, b => new {b.Name,b.Email}));    
-        }
+
+        //[HttpGet("asd")]
+        //public IActionResult getbyid(int id)
+        //{
+        //    //return ok(unitofwork.managers.get(b => b.id == id, b => new { b.name, b.email }));
+        //   // return Ok(unitofwork.Managers.Get(b => b.Id == id, b => new { b.name, b.email }));
+        //}
         [HttpGet("ofah")]
         public IActionResult getby(int id)
         {
-            return Ok(unitofWork.Managers.Gets(id));
+            return Ok(unitofwork.Managers.Gets(id));
         }
     }
 }

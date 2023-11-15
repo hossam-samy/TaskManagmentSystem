@@ -11,7 +11,7 @@ namespace TasksManagmentSystem.core
     public interface IUnitofWork:IDisposable
     {
         IBaseRepo<Manager>Managers {  get; }    
-
+        IAuthService authService { get; }
         
     }
 }

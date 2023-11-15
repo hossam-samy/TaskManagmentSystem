@@ -11,28 +11,37 @@ namespace TasksManagmentSystem.Controllers
     [ApiController]
     public class AcountController : ControllerBase
     {
-            private readonly IUnitofWork work;
+        private readonly IUnitofWork work;
         public AcountController(IUnitofWork _work)
         {
             work = _work;
         }
         [HttpPost("Regester")]
-        public IActionResult Registration ([FromForm]ManagerRegesterDto manager)
+        public async Task<IActionResult> Registration([FromForm] RegesterDto manager)
         {
-            work.Managers.Register(new(manager));
+            if(!ModelState.IsValid)
+                return BadRequest(ModelState);  
+            var result= await work.authService.Register(manager);
+            if(!result.IsAuthenticated) { 
+                return BadRequest(result.Message);  
+            }
+           
             return Ok(manager);
         }
         [HttpPost("Login")]
-
-        public IActionResult Login([FromForm] ManagerLoginDto manager) {
-
-            var found = work.Managers.Get(b => 
-            b.Name == manager.Name && b.Password == manager.Password,b=> new Manager());
-            if(found != null) 
-            return Ok(true);
-
-            return BadRequest();    
-            
+        public async Task<IActionResult> Login([FromForm] LoginDto manager)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await work.authService.Login(manager);
+            if (!result.IsAuthenticated)
+            {
+                return BadRequest(result.Message);
+            }
+            return Ok(manager);
         }
+
+
+
     }
 }

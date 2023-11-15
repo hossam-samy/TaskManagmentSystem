@@ -9,3 +9,6 @@ C:\Users\M lapan\source\repos\TasksManagmentSystem\TasksManagmentSystem.core\obj
 C:\Users\M lapan\source\repos\TasksManagmentSystem\TasksManagmentSystem.core\obj\Debug\net6.0\refint\TasksManagmentSystem.core.dll
 C:\Users\M lapan\source\repos\TasksManagmentSystem\TasksManagmentSystem.core\obj\Debug\net6.0\TasksManagmentSystem.core.pdb
 C:\Users\M lapan\source\repos\TasksManagmentSystem\TasksManagmentSystem.core\obj\Debug\net6.0\ref\TasksManagmentSystem.core.dll
+C:\Users\M lapan\source\repos\TasksManagmentSystem\TasksManagmentSystem.core\bin\Debug\net6.0\TasksManagmentSystem.core.runtimeconfig.json
+C:\Users\M lapan\source\repos\TasksManagmentSystem\TasksManagmentSystem.core\obj\Debug\net6.0\TasksManagmentSystem.core.csproj.AssemblyReference.cache
+C:\Users\M lapan\source\repos\TasksManagmentSystem\TasksManagmentSystem.core\obj\Debug\net6.0\TasksManagmentSystem.core.genruntimeconfig.cache

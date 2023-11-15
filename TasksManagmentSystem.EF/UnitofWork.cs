@@ -13,11 +13,16 @@ namespace TasksManagmentSystem.EF
     public class UnitofWork:IUnitofWork
     {
         private readonly AppDbContext context;
-        public IBaseRepo<Manager> Managers {  get; private set; }  
-        public UnitofWork(AppDbContext context)
+        public IBaseRepo<Manager> Managers {  get; private set; }
+
+        public IAuthService authService { get; private set; }
+        
+
+        public UnitofWork(AppDbContext context,IAuthService service)
         {
             this.context = context;
             Managers = new BaseRepo<Manager>(context);
+            authService = service;
         }
         
         public void Dispose()

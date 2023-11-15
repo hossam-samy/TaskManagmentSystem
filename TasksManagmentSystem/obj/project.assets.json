@@ -3939,6 +3939,14 @@
       "TasksManagmentSystem.core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "6.0.25",
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.25",
+          "Microsoft.EntityFrameworkCore": "6.0.25",
+          "Microsoft.EntityFrameworkCore.SqlServer": "6.0.25",
+          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "6.0.16",
+          "System.IdentityModel.Tokens.Jwt": "6.33.0"
+        },
         "compile": {
           "bin/placeholder/TasksManagmentSystem.core.dll": {}
         },
@@ -3950,8 +3958,12 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore": "6.0.1",
-          "Microsoft.EntityFrameworkCore.SqlServer": "6.0.1",
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "6.0.25",
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.25",
+          "Microsoft.EntityFrameworkCore": "6.0.25",
+          "Microsoft.EntityFrameworkCore.SqlServer": "6.0.25",
+          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "6.0.16",
+          "System.IdentityModel.Tokens.Jwt": "6.33.0",
           "TasksManagmentSystem.core": "1.0.0"
         },
         "compile": {

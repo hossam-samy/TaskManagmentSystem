@@ -22,36 +22,6 @@ namespace TasksManagmentSystem.EF.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("GroupMember", b =>
-                {
-                    b.Property<int>("GroupsId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("MembersId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("GroupsId", "MembersId");
-
-                    b.HasIndex("MembersId");
-
-                    b.ToTable("GroupMember");
-                });
-
-            modelBuilder.Entity("GroupProject", b =>
-                {
-                    b.Property<int>("GroupsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProjectsId")
-                        .HasColumnType("int");
-
-                    b.HasKey("GroupsId", "ProjectsId");
-
-                    b.HasIndex("ProjectsId");
-
-                    b.ToTable("GroupProject");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -193,18 +163,49 @@ namespace TasksManagmentSystem.EF.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<string>("ManagerId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("managerId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("managerId");
+                    b.HasIndex("ManagerId");
 
-                    b.ToTable("Group");
+                    b.ToTable("Groups");
+                });
+
+            modelBuilder.Entity("TasksManagmentSystem.core.Models.GroupMember", b =>
+                {
+                    b.Property<int>("GId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("MId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("GId", "MId");
+
+                    b.HasIndex("MId");
+
+                    b.ToTable("groupMembers");
+                });
+
+            modelBuilder.Entity("TasksManagmentSystem.core.Models.GroupProject", b =>
+                {
+                    b.Property<int>("GId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PId")
+                        .HasColumnType("int");
+
+                    b.HasKey("GId", "PId");
+
+                    b.HasIndex("PId");
+
+                    b.ToTable("groupProjects");
                 });
 
             modelBuilder.Entity("TasksManagmentSystem.core.Models.Project", b =>
@@ -215,28 +216,23 @@ namespace TasksManagmentSystem.EF.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("ManagerId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("managerId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("managerId");
+                    b.HasIndex("ManagerId");
 
-                    b.ToTable("Project");
+                    b.ToTable("Projects");
                 });
 
             modelBuilder.Entity("TasksManagmentSystem.core.Models.Task_", b =>
@@ -254,6 +250,14 @@ namespace TasksManagmentSystem.EF.Migrations
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("ManagerId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("MemberId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<int>("ProjectId")
                         .HasColumnType("int");
 
@@ -264,22 +268,15 @@ namespace TasksManagmentSystem.EF.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("managerId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("memberId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("ManagerId");
+
+                    b.HasIndex("MemberId");
 
                     b.HasIndex("ProjectId");
 
-                    b.HasIndex("managerId");
-
-                    b.HasIndex("memberId");
-
-                    b.ToTable("Task_");
+                    b.ToTable("Tasks");
                 });
 
             modelBuilder.Entity("TasksManagmentSystem.core.Models.User", b =>
@@ -292,10 +289,6 @@ namespace TasksManagmentSystem.EF.Migrations
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
@@ -356,62 +349,31 @@ namespace TasksManagmentSystem.EF.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("User");
+                    b.ToTable("User", (string)null);
                 });
 
             modelBuilder.Entity("TasksManagmentSystem.core.Models.Manager", b =>
                 {
                     b.HasBaseType("TasksManagmentSystem.core.Models.User");
 
-                    b.HasDiscriminator().HasValue("Manager");
+                    b.ToTable("Managers", "AspNetUsers");
                 });
 
             modelBuilder.Entity("TasksManagmentSystem.core.Models.Member", b =>
                 {
                     b.HasBaseType("TasksManagmentSystem.core.Models.User");
 
+                    b.Property<string>("ManagerId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("Spec")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("managerId")
-                        .HasColumnType("nvarchar(450)");
+                    b.HasIndex("ManagerId");
 
-                    b.HasIndex("managerId");
-
-                    b.HasDiscriminator().HasValue("Member");
-                });
-
-            modelBuilder.Entity("GroupMember", b =>
-                {
-                    b.HasOne("TasksManagmentSystem.core.Models.Group", null)
-                        .WithMany()
-                        .HasForeignKey("GroupsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("TasksManagmentSystem.core.Models.Member", null)
-                        .WithMany()
-                        .HasForeignKey("MembersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("GroupProject", b =>
-                {
-                    b.HasOne("TasksManagmentSystem.core.Models.Group", null)
-                        .WithMany()
-                        .HasForeignKey("GroupsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("TasksManagmentSystem.core.Models.Project", null)
-                        .WithMany()
-                        .HasForeignKey("ProjectsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.ToTable("Members", "AspNetUsers");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -469,35 +431,79 @@ namespace TasksManagmentSystem.EF.Migrations
                 {
                     b.HasOne("TasksManagmentSystem.core.Models.Manager", "manager")
                         .WithMany("Groups")
-                        .HasForeignKey("managerId");
+                        .HasForeignKey("ManagerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("manager");
+                });
+
+            modelBuilder.Entity("TasksManagmentSystem.core.Models.GroupMember", b =>
+                {
+                    b.HasOne("TasksManagmentSystem.core.Models.Group", "group")
+                        .WithMany("groupMembers")
+                        .HasForeignKey("GId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TasksManagmentSystem.core.Models.Member", "member")
+                        .WithMany("groupMembers")
+                        .HasForeignKey("MId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("group");
+
+                    b.Navigation("member");
+                });
+
+            modelBuilder.Entity("TasksManagmentSystem.core.Models.GroupProject", b =>
+                {
+                    b.HasOne("TasksManagmentSystem.core.Models.Group", "group")
+                        .WithMany("groupProjects")
+                        .HasForeignKey("GId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TasksManagmentSystem.core.Models.Project", "project")
+                        .WithMany("groupProjects")
+                        .HasForeignKey("PId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("group");
+
+                    b.Navigation("project");
                 });
 
             modelBuilder.Entity("TasksManagmentSystem.core.Models.Project", b =>
                 {
                     b.HasOne("TasksManagmentSystem.core.Models.Manager", "manager")
                         .WithMany("Projects")
-                        .HasForeignKey("managerId");
+                        .HasForeignKey("ManagerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("manager");
                 });
 
             modelBuilder.Entity("TasksManagmentSystem.core.Models.Task_", b =>
                 {
-                    b.HasOne("TasksManagmentSystem.core.Models.Project", "project")
+                    b.HasOne("TasksManagmentSystem.core.Models.Manager", "manager")
                         .WithMany("Tasks")
-                        .HasForeignKey("ProjectId")
+                        .HasForeignKey("ManagerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TasksManagmentSystem.core.Models.Manager", "manager")
-                        .WithMany("Tasks")
-                        .HasForeignKey("managerId");
-
                     b.HasOne("TasksManagmentSystem.core.Models.Member", "member")
                         .WithMany("Tasks")
-                        .HasForeignKey("memberId")
+                        .HasForeignKey("MemberId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TasksManagmentSystem.core.Models.Project", "project")
+                        .WithMany("Tasks")
+                        .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -508,18 +514,44 @@ namespace TasksManagmentSystem.EF.Migrations
                     b.Navigation("project");
                 });
 
+            modelBuilder.Entity("TasksManagmentSystem.core.Models.Manager", b =>
+                {
+                    b.HasOne("TasksManagmentSystem.core.Models.User", null)
+                        .WithOne()
+                        .HasForeignKey("TasksManagmentSystem.core.Models.Manager", "Id")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("TasksManagmentSystem.core.Models.Member", b =>
                 {
+                    b.HasOne("TasksManagmentSystem.core.Models.User", null)
+                        .WithOne()
+                        .HasForeignKey("TasksManagmentSystem.core.Models.Member", "Id")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
+
                     b.HasOne("TasksManagmentSystem.core.Models.Manager", "manager")
                         .WithMany("Members")
-                        .HasForeignKey("managerId");
+                        .HasForeignKey("ManagerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("manager");
+                });
+
+            modelBuilder.Entity("TasksManagmentSystem.core.Models.Group", b =>
+                {
+                    b.Navigation("groupMembers");
+
+                    b.Navigation("groupProjects");
                 });
 
             modelBuilder.Entity("TasksManagmentSystem.core.Models.Project", b =>
                 {
                     b.Navigation("Tasks");
+
+                    b.Navigation("groupProjects");
                 });
 
             modelBuilder.Entity("TasksManagmentSystem.core.Models.Manager", b =>
@@ -536,6 +568,8 @@ namespace TasksManagmentSystem.EF.Migrations
             modelBuilder.Entity("TasksManagmentSystem.core.Models.Member", b =>
                 {
                     b.Navigation("Tasks");
+
+                    b.Navigation("groupMembers");
                 });
 #pragma warning restore 612, 618
         }

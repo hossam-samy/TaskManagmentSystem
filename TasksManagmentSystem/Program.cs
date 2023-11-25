@@ -12,30 +12,24 @@ using TasksManagmentSystem.EF;
 using TasksManagmentSystem.EF.Repos;
 using TasksManagmentSystem.core.Helpers;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<IAuthService, AuthService>();
 
-//builder.Services.AddTransient(typeof(IBaseRepo<>),typeof(BaseRepo<>));
+
 builder.Services.AddScoped<IUnitofWork, UnitofWork>();
 
 // Add services to the container.
 
 builder.Services.Configure<JWT>(builder.Configuration.GetSection("JWT"));
 
+
 builder.Services.AddDbContext<AppDbContext>(option =>
-option.UseSqlServer(builder.Configuration.GetConnectionString("constr")));
+option.UseLazyLoadingProxies().UseSqlServer(builder.Configuration.GetConnectionString("constr")));
 
 builder.Services.AddIdentity<User,IdentityRole>()
    .AddEntityFrameworkStores<AppDbContext>();
-
-builder.Services.AddIdentityCore<Manager>().AddEntityFrameworkStores<AppDbContext>();
-
-builder.Services.AddIdentityCore<Member>().AddEntityFrameworkStores<AppDbContext>();
-
-//builder.Services.AddIdentity<Member, IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
-//builder.Services.AddIdentity<Manager, IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
-//builder.Services.AddDbContext<AppDbContext>(b => b.UseSqlServer(builder.Configuration.GetConnectionString("cons")));
 
 
 

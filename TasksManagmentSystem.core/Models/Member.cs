@@ -10,13 +10,15 @@ namespace TasksManagmentSystem.core.Models
 {
     public class Member:User
     {
-        //public string FirstName { get; set; }
-        //public string LastName { get; set; }
         public string Spec { get; set; }
-        public Manager manager { get; set; }
-        public List<Task_> Tasks { get; set; }
-        public List<Group> Groups { get; set; }
+       
+        public string ManagerId { get; set; }
 
+        public virtual Manager manager { get; set; }
+        public virtual ICollection<Task_> Tasks { get; set; } = new List<Task_>();
+        public virtual ICollection<Group> Groups { get; set; } = new List<Group>();
+
+        public virtual ICollection<GroupMember> groupMembers { get; set; } = new List<GroupMember>();
 
     }
 }

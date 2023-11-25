@@ -10,8 +10,13 @@ namespace TasksManagmentSystem.core
 {
     public interface IUnitofWork:IDisposable
     {
-        IBaseRepo<Manager>Managers {  get; }    
+       
+        IBaseRepo<Task_>Tasks {  get; }   
+        IProjectRepo projectRepo { get; }
+        IGroupRepo groupRepo { get; }
         IAuthService authService { get; }
+        IMemberRepo memberRepo { get; } 
+        IManagerRepo managerRepo { get; }   
         
     }
 }

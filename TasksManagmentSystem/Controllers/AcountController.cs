@@ -16,17 +16,32 @@ namespace TasksManagmentSystem.Controllers
         {
             work = _work;
         }
-        [HttpPost("Regester")]
-        public async Task<IActionResult> Registration([FromForm] RegesterDto manager)
+        [HttpPost("ManagerRegester")]
+        public async Task<IActionResult> ManagerRegistration([FromForm] ManagerDto manager)
         {
+            
             if(!ModelState.IsValid)
                 return BadRequest(ModelState);  
-            var result= await work.authService.Register(manager);
+            var result= await work.authService.ManagerRegister(manager);
             if(!result.IsAuthenticated) { 
                 return BadRequest(result.Message);  
             }
            
             return Ok(manager);
+        }
+        [HttpPost("MemberRegester")]
+        public async Task<IActionResult> MemeberRegistration([FromForm] MemberDto member)
+        {
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await work.authService.MemberRegister(member);
+            if (!result.IsAuthenticated)
+            {
+                return BadRequest(result.Message);
+            }
+
+            return Ok(member);
         }
         [HttpPost("Login")]
         public async Task<IActionResult> Login([FromForm] LoginDto manager)

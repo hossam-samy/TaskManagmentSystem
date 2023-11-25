@@ -10,7 +10,8 @@ namespace TasksManagmentSystem.core.interfaces
 {
     public interface IAuthService
     {
-        Task<AuthModel> Register(RegesterDto manager);
+        Task<AuthModel> MemberRegister(MemberDto member);
+        Task<AuthModel> ManagerRegister(ManagerDto manager);
         Task<AuthModel> Login(LoginDto model);
 
     }

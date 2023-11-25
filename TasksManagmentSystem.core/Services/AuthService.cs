@@ -43,11 +43,12 @@ namespace TasksManagmentSystem.EF.Repos
             var role =await userManager.GetRolesAsync(user);
             auth.Roles=role.ToList();
             var token = await CreateJwtToken(user);
-              auth.Token= new JwtSecurityTokenHandler().WriteToken(token);
+            auth.Token= new JwtSecurityTokenHandler().WriteToken(token);
+            
             return auth;
         }
 
-        public async Task<AuthModel> Register(RegesterDto model)
+        public async Task<AuthModel> MemberRegister(MemberDto model)
         {
             if (await userManager.FindByEmailAsync(model.Email) is not null)
                 return new AuthModel() { Message = "Email already exist " };
@@ -55,14 +56,20 @@ namespace TasksManagmentSystem.EF.Repos
             if (await userManager.FindByNameAsync(model.UserName) is not null)
                 return new AuthModel() { Message = "Username already exist " };
 
-            var user = new User
+            var user = new Member
             {
                 UserName = model.UserName,
                 Email = model.Email,
                 FirstName = model.FirstName,
-                LastName = model.LastName
+                LastName = model.LastName,
+                Spec = model.Spec,
+                ManagerId = model.Managerid
+                 
             };
-            var result = await userManager.CreateAsync(user, model.Password);
+            var us = new User();
+            us = user;
+           
+            var result = await userManager.CreateAsync(us, model.Password);
             if (!result.Succeeded)
             {
                 var errors = string.Empty;
@@ -72,7 +79,49 @@ namespace TasksManagmentSystem.EF.Repos
                 }
                 return new AuthModel() { Message = errors };
             }
-            await userManager.AddToRoleAsync(user, "Manager");
+            await userManager.AddToRoleAsync(us, "Member");
+           
+            var jwtsecuritytoken = await CreateJwtToken(user);
+            return new AuthModel()
+            {
+                Email = user.Email,
+                IsAuthenticated = true,
+                Username = user.UserName,
+                Roles = new List<string> { "Member" },
+                ExpiresOn = jwtsecuritytoken.ValidTo,
+                Token = new JwtSecurityTokenHandler().WriteToken(jwtsecuritytoken)
+            };
+
+        }
+        public async Task<AuthModel> ManagerRegister(ManagerDto model)
+        {
+            if (await userManager.FindByEmailAsync(model.Email) is not null)
+                return new AuthModel() { Message = "Email already exist " };
+
+            if (await userManager.FindByNameAsync(model.UserName) is not null)
+                return new AuthModel() { Message = "Username already exist " };
+
+            var user = new Manager
+            {
+                UserName = model.UserName,
+                Email = model.Email,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+            };
+            var us = new User();
+            us = user;
+
+            var result = await userManager.CreateAsync(us, model.Password);
+            if (!result.Succeeded)
+            {
+                var errors = string.Empty;
+                foreach (var error in result.Errors)
+                {
+                    errors += error.Description + " , ";
+                }
+                return new AuthModel() { Message = errors };
+            }
+            await userManager.AddToRoleAsync(us, "Manager");
             var jwtsecuritytoken = await CreateJwtToken(user);
             return new AuthModel()
             {
@@ -81,7 +130,8 @@ namespace TasksManagmentSystem.EF.Repos
                 Username = user.UserName,
                 Roles = new List<string> { "Manager" },
                 ExpiresOn = jwtsecuritytoken.ValidTo,
-                Token = new JwtSecurityTokenHandler().WriteToken(jwtsecuritytoken)
+                Token = new JwtSecurityTokenHandler().WriteToken(jwtsecuritytoken),
+                Id = jwtsecuritytoken.Id
             };
 
         }

@@ -9,11 +9,16 @@ namespace TasksManagmentSystem.core.interfaces
 {
     public interface IBaseRepo<T>where T : class
     {
-         T Gets(int id);
 
-        public IEnumerable<TResult> Get<TResult>(Func<T,bool>match=null, Func<T, TResult> selector=null );
+        public IEnumerable<TResult> Get<TResult>(Func<T,bool>match, Func<T, TResult> selector );
+        public IEnumerable<TResult> Get<TResult>( Func<T, TResult> selector );
+        public IEnumerable<T> Get(Func<T,bool>match );
+        public IEnumerable<T> Get(Func<T, bool> match, string[] include);
+        public IEnumerable<TResult> Get<TResult>(Func<T, TResult> selector, string include);
 
-        public void Register(T InputDto);
+        public void Delete(T item); 
+        public Task<T> Update( T item );
+        public Task<List<T>> GetAll();
         
 
 
